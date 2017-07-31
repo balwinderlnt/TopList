@@ -1,0 +1,5 @@
+<resources>
+    <string name="action_refresh">Refresh</string>
+    <string name="loading">loading...</string>
+    <string name="albumn_image">Albumn image</string>
+</resources>
