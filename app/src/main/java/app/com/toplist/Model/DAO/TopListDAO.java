@@ -3,6 +3,7 @@ package app.com.toplist.Model.DAO;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,13 +54,22 @@ public class TopListDAO extends BaseDAO {
     }
 
     @Override
-    public void insertData(Object data) {
+    public void insertData(@NonNull Object data) {
+        if(data == null) return;
+
+        List<TopListDTO> topListDTOs = null;
+        try {
+            topListDTOs = (List<TopListDTO>) data;
+        }
+        catch(ClassCastException e)
+        {
+
+        }
+         if(topListDTOs==null) return;
+
         //delete prev data first
         mDBManager.deleteQuery(TableMaster.tblTopList.TABLE_NAME,null,null);
-        List<TopListDTO> topListDTOs = (List<TopListDTO>) data;
-
         ContentValues values = new ContentValues();
-
         for (TopListDTO mdto : topListDTOs
                 ) {
             values.clear();
